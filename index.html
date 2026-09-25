@@ -33,7 +33,7 @@
 
 /* ─── RESET ──────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   background: var(--bg);
   color: var(--text);
@@ -41,6 +41,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -1878,9 +1879,8 @@ footer {
     font-size: 12px;
   }
 
-  /* Nav: hide both buttons, shrink logo, show hamburger */
-  .btn-nav.outline,
-  .nav-buttons .btn-nav.primary { display: none; }
+  /* Nav: hide all desktop buttons so hamburger has room */
+  .nav-buttons { display: none; }
   .logo-icon { height: 44px; }
   .logo-text { display: none; }
   .hero-content { bottom: 210px; }
@@ -2127,27 +2127,34 @@ nav.scrolled { background: rgba(255,255,255,0.95); }
 
 /* ─── ADDITIONAL MOBILE IMPROVEMENTS ─────────── */
 
-/* Hero: gradient overlay on mobile so white text is readable
-   over the lighter top portion of the hero image */
 @media (max-width: 768px) {
+  /* Hero image: crop to mid-section so darker gym floor/trainer area shows */
+  .slide img { object-position: center 55%; }
+
+  /* Hero: gradient overlay — stronger at top so the lighter gym ceiling
+     doesn't look like empty white space above the headline */
   .hero-gradient {
     display: block;
     position: absolute;
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(14,13,13,0.15) 0%,
-      rgba(14,13,13,0.05) 30%,
+      rgba(14,13,13,0.50) 0%,
+      rgba(14,13,13,0.30) 35%,
       rgba(14,13,13,0.55) 58%,
-      rgba(14,13,13,0.90) 100%
+      rgba(14,13,13,0.92) 100%
     );
     z-index: 2;
     pointer-events: none;
   }
   .hero-content { z-index: 3; }
-  /* Bring headline down to ~50px so "UNLEASH YOUR" stays on
-     one line within the 335px mobile content width */
   .hero-headline { font-size: clamp(46px, 13vw, 56px); }
+
+  /* Training: more compact body text so 4 stacked rows don't take 5+ screens */
+  .section-body { font-size: 14px; line-height: 1.6; }
+  .training-row h2 { margin-bottom: 12px; }
+  .service-bullets { gap: 8px; }
+  .service-bullet { font-size: 13px; }
 }
 
 /* Very small phones (< 480px) */
