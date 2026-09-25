@@ -2121,6 +2121,68 @@ nav.scrolled { background: rgba(255,255,255,0.95); }
 @media (max-width: 768px) {
   .transformations-grid { grid-template-columns: 1fr; }
   .transform-img-wrap img { height: 260px; }
+  .transformations { padding: 56px 20px; }
+  .transformations-sub { margin-bottom: 32px; }
+}
+
+/* ─── ADDITIONAL MOBILE IMPROVEMENTS ─────────── */
+
+/* Hero: gradient overlay on mobile so white text is readable
+   over the lighter top portion of the hero image */
+@media (max-width: 768px) {
+  .hero-gradient {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(14,13,13,0.15) 0%,
+      rgba(14,13,13,0.05) 30%,
+      rgba(14,13,13,0.55) 58%,
+      rgba(14,13,13,0.90) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-content { z-index: 3; }
+  /* Bring headline down to ~50px so "UNLEASH YOUR" stays on
+     one line within the 335px mobile content width */
+  .hero-headline { font-size: clamp(46px, 13vw, 56px); }
+}
+
+/* Very small phones (< 480px) */
+@media (max-width: 480px) {
+  /* Hero: lock headline to 46px so UNLEASH YOUR fits one line */
+  .hero-headline { font-size: 46px; }
+
+  /* Training: tighter vertical gap between the 4 stacked rows */
+  .training-inner { gap: 52px; }
+
+  /* Stats: tighter padding on tiny screens */
+  .stat { padding: 20px 14px; }
+  .stat-num { font-size: 34px; }
+  .stat-lbl { font-size: 10px; letter-spacing: 0.2em; }
+
+  /* Footer: single column so 3 link cols don't crowd */
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Amenities + classes: extra gutter reduction */
+  .amenities { padding: 48px 16px; }
+  .classes { padding: 48px 16px; }
+
+  /* FAQ: slightly tighter question rows */
+  .faq-btn { padding: 20px 20px; }
+  .faq-answer { padding: 0 20px 20px; }
+
+  /* Testimonials: tighter on very small screens */
+  .testimonials { padding: 56px 16px; }
+
+  /* Membership: remove diagonal clip-path that can look odd
+     at very narrow widths */
+  .membership {
+    clip-path: none;
+    padding: 80px 20px;
+  }
 }
 </style>
 </head>
